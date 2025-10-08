@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="ja" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本語</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+            background-color: #00cec9;
+            
+        }
+        
+        .flip-card {
+            perspective: 1000px;
+            width: 100%;
+            height: 300px;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            
+        }
+        
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-word, .flip-card-meaning {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 30px;
+        }
+        .content{
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        
+            border-radius: 30px;
+            background: linear-gradient(45deg, #74b9ff, #0984e3, #00cec9, #74b9ff);
+            background-size: 400% 400%;
+            animation: wave 3s ease-in-out infinite;
+        }
+        
+        .flip-card-meaning {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .flip-card-word {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+        }
+        
+        .slide-enter {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        
+        .slide-exit {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        
+        .slide-active {
+            transform: translateX(0);
+            opacity: 1;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .error-shake {
+            animation: shake 0.5s ease-in-out, flash-red 0.5s ease-in-out;
+        }
+        
+        .success-glow {
+            animation: glow-green 1s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        @keyframes flash-red {
+            0%, 100% { background-color: transparent; }
+            50% { background-color: rgba(239, 68, 68, 0.3); }
+        }
+        
+        @keyframes glow-green {
+            0%, 100% { background-color: transparent; }
+            50% { background-color: rgba(34, 197, 94, 0.3); }
+        }
+        
+        .wave-animation {
+            background: linear-gradient(45deg, #74b9ff, #0984e3, #00cec9, #74b9ff);
+            background-size: 400% 400%;
+            animation: wave 3s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+            opacity: 0.8;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .cloud:before {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+        }
+        
+        .cloud1 {
+            width: 80px;
+            height: 30px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .cloud1:before {
+            width: 40px;
+            height: 40px;
+            top: -20px;
+            left: 10px;
+        }
+        
+        .cloud2 {
+            width: 60px;
+            height: 25px;
+            top: 30%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        .cloud2:before {
+            width: 30px;
+            height: 30px;
+            top: -15px;
+            right: 15px;
+            
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .tab-content {
+            display: none;
+            
+        }
+        
+        .tab-content.active {
+            display: block;
+        
+        
+        }
+        
+        .voice-wave {
+            width: 4px;
+            height: 20px;
+            background: #74b9ff;
+            margin: 0 2px;
+            border-radius: 2px;
+            animation: voice-wave 1s ease-in-out infinite;
+        }
+        
+        @keyframes voice-wave {
+            0%, 100% { height: 20px; }
+            50% { height: 40px; }
+        }
+        
+        .voice-wave:nth-child(2) { animation-delay: 0.1s; }
+        .voice-wave:nth-child(3) { animation-delay: 0.2s; }
+        .voice-wave:nth-child(4) { animation-delay: 0.3s; }
+        .voice-wave:nth-child(5) { animation-delay: 0.4s; }
+    
+    .button class{
+        background-color: #00cec9;
+    }
+    </style>
+</head>
+<body class="h-full bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 relative overflow-x-hidden">
+    <!-- Background Clouds -->
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    
+    <div class="min-h-full flex flex-col">
+        <!-- Header -->
+        <header class="bg-white/20 backdrop-blur-sm border-b border-white/30 p-4">
+            <div class="max-w-6xl mx-auto">
+                <h1 class="text-2xl md:text-3xl font-bold text-white text-center">
+                    🌊 日本語 ☀️
+                </h1>
+                <p class="text-white/90 text-center mt-2">勉強</p>
+            </div>
+        </header><br>
+
+        <!-- Tab Navigation -->
+
+         <div class="content">
+        
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="flex overflow-x-auto">
+                    <button class="tab-btn flex-shrink-0 px-4 py-3 text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 border-b-2 border-transparent active" data-tab="cards">
+                        📚 カード学習
+                    </button>
+                    <button class="tab-btn flex-shrink-0 px-4 py-3 text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 border-b-2 border-transparent" data-tab="typing">
+                        ⌨️ タイピング練習
+                    </button>
+                    <button class="tab-btn flex-shrink-0 px-4 py-3 text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 border-b-2 border-transparent" data-tab="voice">
+                        🎤 音声練習
+                    </button>
+                  
+                </div>
+            </div>
+        </nav>
+    </div>
+        <!-- Main Content -->
+        <main class="flex-1 p-4">
+            <div class="max-w-6xl mx-auto">
+                
+                <!-- Cards Tab -->
+                <div id="cards" class="tab-content active">
+                    <div class="text-center mb-6">
+                        <h2 class="text-2xl font-bold text-white mb-2">漢字・単語カード学習</h2>
+                        <p class="text-white/80">カードをタップして翻訳を確認しよう！</p>
+                    </div>
+                    
+                    <div class="max-w-md mx-auto">
+                        <div class="flip-card" id="flashcard">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-word">
+                                    <div class="text-4xl mb-4" id="card-word-text">日本語</div>
+                                    <div class="text-lg opacity-80" id="card-word-reading">勉強</div>
+                                </div>
+                                <div class="flip-card-meaning">
+                                    <div class="text-2xl mb-4" id="card-meaning-text">Summer vacation</div>
+                                    <div class="text-sm opacity-80 mb-4" id="card-example">日本語</div>
+                                    <div class="flex gap-2 justify-center">
+                                        <button class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full text-sm transition-colors" onclick="playPronunciation()">
+                                            🔊 発音
+                                        </button>
+                                        <button class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-full text-sm transition-colors" onclick="toggleFavorite()">
+                                            ⭐ お気に入り
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center mt-6">
+                            <button class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full text-white transition-colors" onclick="previousCard()">
+                                ← 前へ
+                            </button>
+                            <div class="text-white/80">
+                                <span id="card-counter">1</span> / <span id="total-cards">10</span>
+                            </div>
+                            <button class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full text-white transition-colors" onclick="nextCard()">
+                                次へ →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Typing Tab -->
+                <div id="typing" class="tab-content">
+                    <div class="text-center mb-6">
+                        <h2 class="text-2xl font-bold text-white mb-2">タイピング練習</h2>
+                        <p class="text-white/80">表示された日本語をローマ字またはかなで入力しよう！</p>
+                    </div>
+                    
+                    <div class="max-w-2xl mx-auto">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-6">
+                            <div class="text-center mb-4">
+                                <div class="text-3xl font-bold text-white mb-2" id="typing-question">こんにちは</div>
+                                <div class="text-lg text-white/80" id="typing-meaning">Hello</div>
+                            </div>
+                            
+                            <div class="relative">
+                                <input type="text" id="typing-input" class="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-white/60 border-2 border-white/30 focus:border-white/60 focus:outline-none text-lg" placeholder="ここに入力してください..." autocomplete="off">
+                            </div>
+                            
+                            <div class="flex justify-between items-center mt-4 text-white/80">
+                                <div>問題 <span id="typing-counter">1</span> / <span id="typing-total">5</span></div>
+                                <div>正解率: <span id="typing-accuracy">100</span>%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4 justify-center">
+                            <button class="bg-white/20 hover:bg-white/30 px-6 py-2 rounded-full text-white transition-colors" onclick="skipTypingQuestion()">
+                                スキップ
+                            </button>
+                            <button class="bg-white/20 hover:bg-white/30 px-6 py-2 rounded-full text-white transition-colors" onclick="resetTyping()">
+                                リセット
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Voice Tab -->
+                <div id="voice" class="tab-content">
+                    <div class="text-center mb-6">
+                        <h2 class="text-2xl font-bold text-white mb-2">音声練習</h2>
+                        <p class="text-white/80">マイクボタンを押して発音練習をしよう！</p>
+                    </div>
+                    
+                    <div class="max-w-2xl mx-auto">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-6 text-center">
+                            <div class="text-3xl font-bold text-white mb-2" id="voice-question">ありがとう</div>
+                            <div class="text-lg text-white/80 mb-6" id="voice-meaning">Thank you</div>
+                            
+                            <div class="flex justify-center mb-6">
+                                <button id="voice-btn" class="bg-red-500 hover:bg-red-600 w-20 h-20 rounded-full text-white text-2xl transition-colors flex items-center justify-center" onclick="toggleVoiceRecording()">
+                                    🎤
+                                </button>
+                            </div>
+                            
+                            <div id="voice-waves" class="flex justify-center mb-4" style="display: none;">
+                                <div class="voice-wave"></div>
+                                <div class="voice-wave"></div>
+                                <div class="voice-wave"></div>
+                                <div class="voice-wave"></div>
+                                <div class="voice-wave"></div>
+                            </div>
+                            
+                            <div id="voice-feedback" class="text-white/80 min-h-[2rem]">
+                                マイクボタンを押して発音してください
+                            </div>
+                            
+                            <div class="mt-4">
+                                <div class="text-white/60 text-sm">発音スコア</div>
+                                <div class="text-2xl font-bold text-white" id="voice-score">--</div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button class="bg-white/20 hover:bg-white/30 px-6 py-2 rounded-full text-white transition-colors" onclick="nextVoiceQuestion()">
+                                次の問題
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story Tab -->
+                <div id="story" class="tab-content">
+                    <div class="text-center mb-6">
+                        <h2 class="text-2xl font-bold text-white mb-2">夏休みストーリー</h2>
+                        <p class="text-white/80">2ヶ月間の夏休み体験を通じて日本語を学ぼう</p>
+                    </div>
+                    
+                    <div class="max-w-4xl mx-auto space-y-6">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                            <h3 class="text-xl font-bold text-white mb-4">🚃 通勤体験</h3>
+                            <p class="text-white/90 leading-relaxed mb-4">
+                                毎朝7時30分に家を出て、電車で学校まで通勤しました。満員電車での体験や、駅での案内放送を聞きながら、日常会話や交通に関する日本語を学びました。
+                            </p>
+                            <div class="bg-white/10 rounded-lg p-4">
+                                <div class="font-semibold text-white mb-2">学習した表現：</div>
+                                <div class="text-white/80">
+                                    • 電車が遅れています (でんしゃがおくれています) - The train is delayed<br>
+                                    • 次は新宿です (つぎはしんじゅくです) - Next is Shinjuku<br>
+                                    • すみません (すみません) - Excuse me
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                            <h3 class="text-xl font-bold text-white mb-4">💻 プログラミング業務</h3>
+                            <p class="text-white/90 leading-relaxed mb-4">
+                                学校のシステム開発やWebサイトの更新作業を担当しました。技術用語や業務に関する日本語を実践的に学ぶことができました。
+                            </p>
+                            <div class="bg-white/10 rounded-lg p-4">
+                                <div class="font-semibold text-white mb-2">学習した表現：</div>
+                                <div class="text-white/80">
+                                    • データベース (データベース) - Database<br>
+                                    • プログラムを実行する (プログラムをじっこうする) - Execute the program<br>
+                                    • バグを修正する (バグをしゅうせいする) - Fix the bug
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                            <h3 class="text-xl font-bold text-white mb-4">📊 Excel業務（出席・成績管理）</h3>
+                            <p class="text-white/90 leading-relaxed mb-4">
+                                学生の出席状況や成績データをExcelで管理する業務を担当しました。数字や評価に関する日本語表現を学びました。
+                            </p>
+                            <div class="bg-white/10 rounded-lg p-4">
+                                <div class="font-semibold text-white mb-2">学習した表現：</div>
+                                <div class="text-white/80">
+                                    • 出席率 (しゅっせきりつ) - Attendance rate<br>
+                                    • 成績を入力する (せいせきをにゅうりょくする) - Input grades<br>
+                                    • 平均点 (へいきんてん) - Average score
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                            <h3 class="text-xl font-bold text-white mb-4">⚠️ インシデント処理業務</h3>
+                            <p class="text-white/90 leading-relaxed mb-4">
+                                校内で発生した軽微な破損や落書きなどのインシデントに対する対応業務も担当しました。記録・報告・必要に応じた金銭的な処理の実施を通じて、責任感のある業務対応と関連する日本語表現を学びました。
+                            </p>
+                            <div class="bg-white/10 rounded-lg p-4">
+                                <div class="font-semibold text-white mb-2">学習した表現：</div>
+                                <div class="text-white/80">
+                                    • 破損を報告する (はそんをほうこくする) - Report damage<br>
+                                    • 責任を取る (せきにんをとる) - Take responsibility<br>
+                                    • 処理を実施する (しょりをじっしする) - Implement processing
+                                </div>
+                            </div>
+                            <div class="mt-4 text-sm text-white/60">
+                                ※ 金額設定は管理画面で編集可能です
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Tab -->
+                <div id="admin" class="tab-content">
+                    <div class="text-center mb-6">
+                        <h2 class="text-2xl font-bold text-white mb-2">管理画面</h2>
+                        <p class="text-white/80">学習データとインシデント処理の管理</p>
+                    </div>
+                    
+                    <div class="max-w-4xl mx-auto space-y-6">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                            <h3 class="text-xl font-bold text-white mb-4">📋 インシデント処理設定</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-white/80 mb-2">破損処理テンプレート</label>
+                                    <textarea class="w-full px-4 py-2 rounded-lg bg-white/20 text-white placeholder-white/60 border border-white/30 focus:border-white/60 focus:outline-none" rows="3" placeholder="破損が発生した場合の処理手順を入力...">1. 破損状況の確認と記録
+2. 関係者への報告
+3. 修理費用の算出と処理</textarea>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-white/80 mb-2">軽微な破損 処理金額</label>
+                                        <input type="number" class="w-full px-4 py-2 rounded-lg bg-white/20 text-white placeholder-white/60 border border-white/30 focus:border-white/60 focus:outline-none" placeholder="金額を入力" value="5000">
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/80 mb-2">落書き 処理金額</label>
+                                        <input type="number" class="w-full px-4 py-2 rounded-lg bg-white/20 text-white placeholder-white/60 border border-white/30 focus:border-white/60 focus:outline-none" placeholder="金額を入力" value="3000">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                            <h3 class="text-xl font-bold text-white mb-4">📊 学習データ管理</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                <div class="bg-white/10 rounded-lg p-4 text-center">
+                                    <div class="text-2xl font-bold text-white">156</div>
+                                    <div class="text-white/80">学習カード数</div>
+                                </div>
+                                <div class="bg-white/10 rounded-lg p-4 text-center">
+                                    <div class="text-2xl font-bold text-white">89%</div>
+                                    <div class="text-white/80">平均正解率</div>
+                                </div>
+                                <div class="bg-white/10 rounded-lg p-4 text-center">
+                                    <div class="text-2xl font-bold text-white">24</div>
+                                    <div class="text-white/80">学習時間（時間）</div>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <button class="bg-green-500 hover:bg-green-600 px-6 py-2 rounded-full text-white transition-colors" onclick="exportCSV()">
+                                    📄 CSV エクスポート
+                                </button>
+                                <button class="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-full text-white transition-colors" onclick="exportExcel()">
+                                    📊 Excel エクスポート
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Sample data
+        const deckN4 = 
+        [ { "word": "必ず", "reading": "かならず", "meaning": "surely / ज़रूर / chắc chắn / обязательно" },
+      { "word": "嬉しい", "reading": "うれしい", "meaning": "happy / खुश / vui / счастливый" },
+      { "word": "悲しい", "reading": "かなしい", "meaning": "sad / दुखी / buồn / грустный" },
+      { "word": "寂しい", "reading": "さびしい", "meaning": "lonely / अकेला / cô đơn / одинокий" },
+      { "word": "素晴らしい", "reading": "すばらしい", "meaning": "wonderful / शानदार / tuyệt vời / замечательный" },
+      { "word": "怖い", "reading": "こわい", "meaning": "scary / डरावना / đáng sợ / страшный" },
+      { "word": "美味しい", "reading": "おいしい", "meaning": "delicious / स्वादिष्ट / ngon / вкусный" },
+      { "word": "深い", "reading": "ふかい", "meaning": "deep / गहरा / sâu / глубокий" },
+      { "word": "浅い", "reading": "あさい", "meaning": "shallow / उथला / nông / мелкий" },
+      { "word": "強い", "reading": "つよい", "meaning": "strong / ताकतवर / mạnh / сильный" },
+      { "word": "弱い", "reading": "よわい", "meaning": "weak / कमजोर / yếu / слабый" },
+      { "word": "硬い", "reading": "ｙい", "meaning": "hard / सख्त / cứng / твёрдый" },
+      { "word": "柔らかい", "reading": "やわらかい", "meaning": "soft / मुलायम / mềm / мягкий" },
+      { "word": "煩い", "reading": "うるさい", "meaning": "noisy / शोरगुल वाला / ồn ào / шумный" },
+      { "word": "優しい", "reading": "やさしい", "meaning": "kind / दयालु / tử tế / добрый" },
+      { "word": "厳しい", "reading": "きびしい", "meaning": "strict / सख़्त / nghiêm khắc / строгий" },
+      { "word": "若い", "reading": "わかい", "meaning": "young / युवा / trẻ / молодой" },
+      { "word": "長い", "reading": "ながい", "meaning": "long / लंबा / dài / длинный" },
+      { "word": "短い", "reading": "みじかい", "meaning": "short / छोटा / ngắn / короткий" },
+      { "word": "珍しい", "reading": "めずらしい", "meaning": "rare / दुर्लभ / hiếm / редкий" },
+      { "word": "美しい", "reading": "うつくしい", "meaning": "beautiful / सुंदर / đẹp / красивый" },
+      { "word": "気持ちがいい", "reading": "きもちがいい", "meaning": "feels good / अच्छा लगता है / dễ chịu / приятно" },
+      { "word": "暖かい", "reading": "あたたかい", "meaning": "warm / गरम / ấm / тёплый" },
+      { "word": "涼しい", "reading": "すずしい", "meaning": "cool / ठंडा / mát / прохладный" },
+      { "word": "青い", "reading": "あおい", "meaning": "blue / नीला / xanh / синий" },
+      { "word": "赤い", "reading": "あかい", "meaning": "red / लाल / đỏ / красный" },
+      { "word": "黒い", "reading": "くろい", "meaning": "black / काला / đen / чёрный" },
+      { "word": "白い", "reading": "しろい", "meaning": "white / सफेद / trắng / белый" },
+      { "word": "明るい", "reading": "あかるい", "meaning": "bright / उजला / sáng / светлый" },
+      { "word": "暗い", "reading": "くらい", "meaning": "dark / अंधेरा / tối / тёмный" },
+      { "word": "重い", "reading": "おもい", "meaning": "heavy / भारी / nặng / тяжёлый" },
+      { "word": "軽い", "reading": "かるい", "meaning": "light / हल्का / nhẹ / лёгкий" },
+      { "word": "近い", "reading": "ちかい", "meaning": "near / नजदीक / gần / близкий" },
+      { "word": "遠い", "reading": "とおい", "meaning": "far / दूर / xa / далёкий" },
+      { "word": "頭がいい", "reading": "あたまがいい", "meaning": "smart / समझदार / thông minh / умный" },
+      { "word": "正しい", "reading": "ただしい", "meaning": "correct / सही / đúng / правильный" },
+      { "word": "楽しい", "reading": "たのしい", "meaning": "fun / मज़ेदार / vui / весёлый" },
+      { "word": "広い", "reading": "ひろい", "meaning": "wide / चौड़ा / rộng / широкий" },
+      { "word": "狭い", "reading": "せまい", "meaning": "narrow / संकीर्ण / hẹp / узкий" },
+      { "word": "汚い", "reading": "きたない", "meaning": "dirty / गंदा / bẩn / грязный" },
+      { "word": "羨ましい", "reading": "うらやましい", "meaning": "envious / ईर्ष्यालु / ghen tị / завистливый" },
+      { "word": "少ない", "reading": "すくない", "meaning": "few / कम / ít / мало" },
+      { "word": "気分が悪い", "reading": "きぶんがわるい", "meaning": "feeling sick / बीमार महसूस करना / cảm thấy ốm / чувствовать себя плохо" },
+      { "word": "恥ずかしい", "reading": "はずかしい", "meaning": "embarrassed / शर्मिंदा / xấu hổ / смущённый" },
+      { "word": "都合が悪い", "reading": "つごうがわるい", "meaning": "inconvenient / असुविधाजनक / không thuận tiện / неудобный" },
+      { "word": "眠い", "reading": "ねむい", "meaning": "sleepy / नींद आ रही है / buồn ngủ / сонный" },
+      { "word": "苦い", "reading": "にがい", "meaning": "bitter / कड़वा / đắng / горький" },
+      { "word": "可愛い", "reading": "かわいい", "meaning": "cute / प्यारा / dễ thương / милый" },
+      { "word": "静かな", "reading": "しずかな", "meaning": "quiet / शांत / yên tĩnh / тихий" },
+      { "word": "賑やかな", "reading": "にぎやかな", "meaning": "lively / जीवंत / náo nhiệt / оживлённый" },
+      { "word": "安全な", "reading": "あんぜんな", "meaning": "safe / सुरक्षित / an toàn / безопасный" },
+      { "word": "危険な", "reading": "きけんな", "meaning": "dangerous / खतरनाक / nguy hiểm / опасный" },
+      { "word": "真面目な", "reading": "まじめな", "meaning": "serious / गंभीर / nghiêm túc / серьёзный" },
+      { "word": "必要な", "reading": "ひつような", "meaning": "necessary / आवश्यक / cần thiết / необходимый" },
+      { "word": "嫌な", "reading": "いやな", "meaning": "unpleasant / अप्रिय / khó chịu / неприятный" },
+      { "word": "残念な", "reading": "ざんねんな", "meaning": "regrettable / खेदजनक / đáng tiếc / досадный" },
+      { "word": "親切な", "reading": "しんせつな", "meaning": "kind / दयालु / tử tế / добрый" },
+      { "word": "変な", "reading": "へんな", "meaning": "strange / अजीब / lạ / странный" },
+      { "word": "便利な", "reading": "べんりな", "meaning": "convenient / सुविधाजनक / tiện lợi / удобный" },
+      { "word": "不便な", "reading": "ふべんな", "meaning": "inconvenient / असुविधाजनक / bất tiện / неудобный" },
+      { "word": "特別な", "reading": "とくべつな", "meaning": "special / विशेष / đặc biệt / особенный" },
+      { "word": "有名な", "reading": "ゆうめいな", "meaning": "famous / प्रसिद्ध / nổi tiếng / известный" },
+      { "word": "色々な", "reading": "いろいろな", "meaning": "various / विभिन्न / đa dạng / разнообразный" },
+      { "word": "幸せな", "reading": "しあわせな", "meaning": "happy / खुश / hạnh phúc / счастливый" },
+      { "word": "駄目な", "reading": "だめな", "meaning": "no good / बेकार / không được / плохой" },
+      { "word": "大切な", "reading": "たいせつな", "meaning": "important / महत्वपूर्ण / quan trọng / важный" },
+      { "word": "心配な", "reading": "しんぱいな", "meaning": "worried / चिंतित / lo lắng / озабоченный" },
+      { "word": "貧乏な", "reading": "びんぼうな", "meaning": "poor / गरीब / nghèo / бедный" },
+      { "word": "楽な", "reading": "らくな", "meaning": "easy / आसान / dễ dàng / лёгкий" },
+      { "word": "意地悪な", "reading": "いじわるな", "meaning": "mean / दुष्ट / xấu bụng / злой" },
+      { "word": "無理な", "reading": "むりな", "meaning": "impossible / असम्भव / vô lý / невозможный" },
+      { "word": "無駄な", "reading": "むだな", "meaning": "wasteful / फजुल / lãng phí / бесполезный" },
+      { "word": "熱心な", "reading": "ねっしんな", "meaning": "enthusiastic / उत्साही / nhiệt tình / усердный" },
+      { "word": "十分な", "reading": "じゅうぶんな", "meaning": "enough / पर्याप्त / đủ / достаточный" },
+      { "word": "複雑な", "reading": "ふくざつな", "meaning": "complicated / जटिल / phức tạp / сложный" },
+      { "word": "丁寧な", "reading": "ていねいな", "meaning": "polite / सभ्य / lịch sự / вежливый" },
+      { "word": "失礼な", "reading": "しつれいな", "meaning": "rude / बद्तमीज / vô lễ / грубый" },
+      { "word": "あ", "reading": "あ", "meaning": "Ah / आह / Ah / Ах" },
+    { "word": "ああ", "reading": "ああ", "meaning": "like that / ऐसा / như thế / так" },
+    { "word": "間", "reading": "あいだ", "meaning": "a space / अंतर / khoảng trống / пространство" },
+    { "word": "合う", "reading": "あう", "meaning": "to match / मिलना / phù hợp / соответствовать" },
+    { "word": "あかちゃん", "reading": "あかちゃん", "meaning": "baby / बच्चा / em bé / младенец" },
+    { "word": "上る", "reading": "あがる", "meaning": "to rise / उठना / tăng lên / подниматься" },
+    { "word": "赤ん坊", "reading": "あかんぼう", "meaning": "baby / शिशु / trẻ sơ sinh / младенец" },
+    { "word": "空く", "reading": "あく", "meaning": "to open, to become empty / खुलना / trống / опустеть" },
+    { "word": "あげる", "reading": "あげる", "meaning": "to give / देना / cho / давать" },
+    { "word": "浅い", "reading": "あさい", "meaning": "shallow, superficial / उथला / nông / мелкий" },
+    { "word": "味", "reading": "あじ", "meaning": "flavor / स्वाद / hương vị / вкус" },
+    { "word": "明日", "reading": "あす / あした", "meaning": "tomorrow / कल / ngày mai / завтра" },
+    { "word": "遊び", "reading": "あそび", "meaning": "play / खेल / trò chơi / игра" },
+    { "word": "集る", "reading": "あつまる", "meaning": "to gather / इकट्ठा होना / tập hợp / собираться" },
+    { "word": "集める", "reading": "あつめる", "meaning": "to collect something / इकट्ठा करना / thu thập / собирать" },
+    { "word": "謝る", "reading": "あやまる", "meaning": "to apologize / माफ़ करना / xin lỗi / извиняться" },
+    { "word": "安心", "reading": "あんしん", "meaning": "relief / राहत / yên tâm / облегчение" },
+    { "word": "安全", "reading": "あんぜん", "meaning": "safety / सुरक्षा / an toàn / безопасность" },
+    { "word": "あんな", "reading": "あんな", "meaning": "such / ऐसा / như thế / такой" },
+    { "word": "以下", "reading": "いか", "meaning": "less than / से कम / ít hơn / меньше" },
+    { "word": "以外", "reading": "いがい", "meaning": "with the exception of / के अलावा / ngoại trừ / кроме" },
+    { "word": "医学", "reading": "いがく", "meaning": "medical science / चिकित्सा विज्ञान / y học / медицина" },
+    { "word": "生きる", "reading": "いきる", "meaning": "to live / जीना / sống / жить" },
+    { "word": "意見", "reading": "いけん", "meaning": "opinion / राय / ý kiến / мнение" },
+    { "word": "石", "reading": "いし", "meaning": "stone / पत्थर / đá / камень" },
+    { "word": "いじめる", "reading": "いじめる", "meaning": "to tease / तंग करना / bắt nạt / дразнить" },
+    { "word": "以上", "reading": "いじょう", "meaning": "more than, this is all / से अधिक / hơn / выше, всё" },
+    { "word": "急ぐ", "reading": "いそぐ", "meaning": "to hurry / जल्दी करना / vội / спешить" },
+    { "word": "致す", "reading": "いたす", "meaning": "(humble) to do / करना (नम्र) / làm (khiêm nhường) / делать (скромно)" },
+    { "word": "一度", "reading": "いちど", "meaning": "once / एक बार / một lần / один раз" },
+    { "word": "一生懸命", "reading": "いっしょうけんめい", "meaning": "with utmost effort / पूरी मेहनत से / hết sức / изо всех сил" },
+    { "word": "いっぱい", "reading": "いっぱい", "meaning": "full / भरा / đầy / полный" },
+    { "word": "糸", "reading": "いと", "meaning": "thread / धागा / sợi / нить" },
+    { "word": "以内", "reading": "いない", "meaning": "within / के भीतर / trong vòng / в пределах" },
+    { "word": "田舎", "reading": "いなか", "meaning": "countryside / गांव / nông thôn / деревня" },
+    { "word": "祈る", "reading": "いのる", "meaning": "to pray / प्रार्थना करना / cầu nguyện / молиться" },
+    { "word": "いらっしゃる", "reading": "いらっしゃる", "meaning": "(respectful) to be, to come or to go / होना / có mặt / быть (уважительно)" },
+    { "word": "植える", "reading": "うえる", "meaning": "to plant, to grow / लगाना / trồng / сажать" },
+    { "word": "受付", "reading": "うけつけ", "meaning": "reception / स्वागत / quầy tiếp tân / приёмная" },
+    { "word": "受ける", "reading": "うける", "meaning": "to take a lesson or test / लेना / tham gia / сдавать" },
+    { "word": "動く", "reading": "うごく", "meaning": "to move / हिलना / di chuyển / двигаться" },
+    { "word": "うち", "reading": "うち", "meaning": "within / अंदर / bên trong / внутри" },
+    { "word": "打つ", "reading": "うつ", "meaning": "to hit / मारना / đánh / ударять" },
+    { "word": "美しい", "reading": "うつくしい", "meaning": "beautiful / सुंदर / đẹp / красивый" },
+    { "word": "写す", "reading": "うつす", "meaning": "to copy or photograph / कॉपी करना / chụp lại / копировать" },
+    { "word": "移る", "reading": "うつる", "meaning": "to move house or transfer / स्थानांतरित होना / chuyển / переезжать" },
+    { "word": "腕", "reading": "うで", "meaning": "arm / बाँह / cánh tay / рука" },
+    { "word": "裏", "reading": "うら", "meaning": "reverse side / विपरीत पक्ष / mặt sau / обратная сторона" },
+    { "word": "売り場", "reading": "うりば", "meaning": "place where things are sold / बिक्री स्थान / nơi bán hàng / отдел продаж" },
+    { "word": "うん", "reading": "うん", "meaning": "(informal) yes / हाँ / vâng / да" },
+    { "word": "運転手", "reading": "うんてんしゅ", "meaning": "driver / चालक / tài xế / водитель" },
+    { "word": "枝", "reading": "えだ", "meaning": "branch, twig / शाखा / cành cây / ветка" },
+    { "word": "選ぶ", "reading": "えらぶ", "meaning": "to choose / चुनना / chọn / выбирать" },
+    { "word": "遠慮", "reading": "えんりょする", "meaning": "to be reserved, to be restrained / संकोच करना / ngần ngại / сдерживаться" },
+    { "word": "おいでになる", "reading": "おいでになる", "meaning": "(respectful) to be / होना (सम्मानपूर्वक) / có mặt / быть (уважительно)" },
+    { "word": "お祝い", "reading": "おいわい", "meaning": "congratulation / बधाई / chúc mừng / поздравление" },
+    { "word": "おかげ", "reading": "おかげ", "meaning": "owing to, thanks to / के कारण / nhờ / благодаря" },
+    { "word": "おかしい", "reading": "おかしい", "meaning": "strange or funny / अजीब / buồn cười / странный" },
+    { "word": "億", "reading": "おく", "meaning": "one hundred million / एक करोड़ / một trăm triệu / сто миллионов" },
+    { "word": "屋上", "reading": "おくじょう", "meaning": "rooftop / छत / mái nhà / крыша" },
+    { "word": "贈り物", "reading": "おくりもの", "meaning": "gift / उपहार / quà tặng / подарок" },
+    { "word": "送る", "reading": "おくる", "meaning": "to send / भेजना / gửi / отправлять" },
+    { "word": "遅れる", "reading": "おくれる", "meaning": "to be late / देर होना / muộn / опаздывать" },
+    { "word": "起す", "reading": "おこす", "meaning": "to wake / जगाना / đánh thức / будить" },
+    { "word": "行う", "reading": "おこなう", "meaning": "to do / करना / thực hiện / делать" },
+    { "word": "怒る", "reading": "おこる", "meaning": "to get angry, to be angry / गुस्सा होना / tức giận / сердиться" },
+    { "word": "押し入れ", "reading": "おしいれ", "meaning": "closet / अलमारी / tủ quần áo / шкаф" },
+    { "word": "お嬢さん", "reading": "おじょうさん", "meaning": "young lady / बेटी / cô gái / молодая леди" },
+    { "word": "お宅", "reading": "おたく", "meaning": "(polite) your house / घर (सज्जन) / nhà (lịch sự) / ваш дом" },
+    { "word": "落ちる", "reading": "おちる", "meaning": "to fall or drop / गिरना / rơi / падать" },
+    { "word": "おっしゃる", "reading": "おっしゃる", "meaning": "(respectful) to say / कहना (सम्मानपूर्वक) / nói / сказать" },
+    { "word": "夫", "reading": "おっと", "meaning": "husband / पति / chồng / муж" },
+    { "word": "驚く", "reading": "おどろく", "meaning": "to be surprised / हैरान होना / ngạc nhiên / удивляться" },
+    { "word": "おとなしい", "reading": "おとなしい", "meaning": "quiet / शांत / ngoan / тихий" },
+    { "word": "おどり", "reading": "おどり", "meaning": "dance / नृत्य / nhảy múa / танец" },
+    { "word": "お腹", "reading": "おなか", "meaning": "stomach / पेट / bụng / живот" },
+    { "word": "お兄さん", "reading": "おにいさん", "meaning": "older brother / बड़ा भाई / anh trai / старший брат" },
+    { "word": "お姉さん", "reading": "おねえさん", "meaning": "older sister / बड़ी बहन / chị gái / старшая сестра" },
+    { "word": "覚える", "reading": "おぼえる", "meaning": "to memorize / याद करना / ghi nhớ / запоминать" },
+    { "word": "おもしろい", "reading": "おもしろい", "meaning": "interesting / रोचक / thú vị / интересный" },
+    { "word": "おもちゃ", "reading": "おもちゃ", "meaning": "toy / खिलौना / đồ chơi / игрушка" },
+    { "word": "重い", "reading": "おもい", "meaning": "heavy / भारी / nặng / тяжёлый" },
+    { "word": "思い出", "reading": "おもいで", "meaning": "memory / याद / ký ức / воспоминание" },
+    { "word": "泳ぐ", "reading": "およぐ", "meaning": "to swim / तैरना / bơi / плавать" },
+    { "word": "降りる", "reading": "おりる", "meaning": "to get off / उतरना / xuống / выходить" },
+    { "word": "折る", "reading": "おる", "meaning": "to break, to fold / तोड़ना / gấp / ломать" },
+    { "word": "降る", "reading": "ふる", "meaning": "to fall (rain, snow) / गिरना / rơi / падать" },
+    { "word": "お礼", "reading": "おれい", "meaning": "thanks / धन्यवाद / cảm ơn / благодарность" },
+    { "word": "あ", "reading": "あ", "meaning": "Ah / आह / Ah / Ах" },
+    { "word": "ああ", "reading": "ああ", "meaning": "like that / ऐसा / như thế / так" },
+    { "word": "間", "reading": "あいだ", "meaning": "a space / अंतर / khoảng trống / пространство" },
+    { "word": "合う", "reading": "あう", "meaning": "to match / मिलना / phù hợp / соответствовать" },
+    { "word": "あかちゃん", "reading": "あかちゃん", "meaning": "baby / बच्चा / em bé / младенец" },
+    { "word": "上る", "reading": "あがる", "meaning": "to rise / उठना / tăng lên / подниматься" },
+    { "word": "赤ん坊", "reading": "あかんぼう", "meaning": "baby / शिशु / trẻ sơ sinh / младенец" },
+    { "word": "空く", "reading": "あく", "meaning": "to open, to become empty / खुलना / trống / опустеть" },
+    { "word": "あげる", "reading": "あげる", "meaning": "to give / देना / cho / давать" },
+    { "word": "浅い", "reading": "あさい", "meaning": "shallow, superficial / उथला / nông / мелкий" },
+    { "word": "味", "reading": "あじ", "meaning": "flavor / स्वाद / hương vị / вкус" },
+    { "word": "明日", "reading": "あす / あした", "meaning": "tomorrow / कल / ngày mai / завтра" },
+    { "word": "遊び", "reading": "あそび", "meaning": "play / खेल / trò chơi / игра" },
+    { "word": "集る", "reading": "あつまる", "meaning": "to gather / इकट्ठा होना / tập hợp / собираться" },
+    { "word": "集める", "reading": "あつめる", "meaning": "to collect something / इकट्ठा करना / thu thập / собирать" },
+    { "word": "謝る", "reading": "あやまる", "meaning": "to apologize / माफ़ करना / xin lỗi / извиняться" },
+    { "word": "安心", "reading": "あんしん", "meaning": "relief / राहत / yên tâm / облегчение" },
+    { "word": "安全", "reading": "あんぜん", "meaning": "safety / सुरक्षा / an toàn / безопасность" },
+    { "word": "あんな", "reading": "あんな", "meaning": "such / ऐसा / như thế / такой" },
+    { "word": "以下", "reading": "いか", "meaning": "less than / से कम / ít hơn / меньше" },
+    { "word": "以外", "reading": "いがい", "meaning": "with the exception of / के अलावा / ngoại trừ / кроме" },
+    { "word": "医学", "reading": "いがく", "meaning": "medical science / चिकित्सा विज्ञान / y học / медицина" },
+    { "word": "生きる", "reading": "いきる", "meaning": "to live / जीना / sống / жить" },
+    { "word": "意見", "reading": "いけん", "meaning": "opinion / राय / ý kiến / мнение" },
+    { "word": "石", "reading": "いし", "meaning": "stone / पत्थर / đá / камень" },
+    { "word": "いじめる", "reading": "いじめる", "meaning": "to tease / तंग करना / bắt nạt / дразнить" },
+    { "word": "以上", "reading": "いじょう", "meaning": "more than, this is all / से अधिक / hơn / выше, всё" },
+    { "word": "急ぐ", "reading": "いそぐ", "meaning": "to hurry / जल्दी करना / vội / спешить" },
+    { "word": "致す", "reading": "いたす", "meaning": "(humble) to do / करना (नम्र) / làm (khiêm nhường) / делать (скромно)" },
+    { "word": "一度", "reading": "いちど", "meaning": "once / एक बार / một lần / один раз" },
+    { "word": "一生懸命", "reading": "いっしょうけんめい", "meaning": "with utmost effort / पूरी मेहनत से / hết sức / изо всех сил" },
+    { "word": "いっぱい", "reading": "いっぱい", "meaning": "full / भरा / đầy / полный" },
+    { "word": "糸", "reading": "いと", "meaning": "thread / धागा / sợi / нить" },
+    { "word": "以内", "reading": "いない", "meaning": "within / के भीतर / trong vòng / в пределах" },
+    { "word": "田舎", "reading": "いなか", "meaning": "countryside / गांव / nông thôn / деревня" },
+    { "word": "祈る", "reading": "いのる", "meaning": "to pray / प्रार्थना करना / cầu nguyện / молиться" },
+    { "word": "いらっしゃる", "reading": "いらっしゃる", "meaning": "(respectful) to be, to come or to go / होना / có mặt / быть (уважительно)" },
+    { "word": "植える", "reading": "うえる", "meaning": "to plant, to grow / लगाना / trồng / сажать" },
+    { "word": "受付", "reading": "うけつけ", "meaning": "reception / स्वागत / quầy tiếp tân / приёмная" },
+    { "word": "受ける", "reading": "うける", "meaning": "to take a lesson or test / लेना / tham gia / сдавать" },
+    { "word": "動く", "reading": "うごく", "meaning": "to move / हिलना / di chuyển / двигаться" },
+    { "word": "うち", "reading": "うち", "meaning": "within / अंदर / bên trong / внутри" },
+    { "word": "打つ", "reading": "うつ", "meaning": "to hit / मारना / đánh / ударять" },
+    { "word": "美しい", "reading": "うつくしい", "meaning": "beautiful / सुंदर / đẹp / красивый" },
+    { "word": "写す", "reading": "うつす", "meaning": "to copy or photograph / कॉपी करना / chụp lại / копировать" },
+    { "word": "移る", "reading": "うつる", "meaning": "to move house or transfer / स्थानांतरित होना / chuyển / переезжать" },
+    { "word": "腕", "reading": "うで", "meaning": "arm / बाँह / cánh tay / рука" },
+    { "word": "裏", "reading": "うら", "meaning": "reverse side / विपरीत पक्ष / mặt sau / обратная сторона" },
+    { "word": "売り場", "reading": "うりば", "meaning": "place where things are sold / बिक्री स्थान / nơi bán hàng / отдел продаж" },
+    { "word": "うん", "reading": "うん", "meaning": "(informal) yes / हाँ / vâng / да" },
+    { "word": "運転手", "reading": "うんてんしゅ", "meaning": "driver / चालक / tài xế / водитель" },
+    { "word": "枝", "reading": "えだ", "meaning": "branch, twig / शाखा / cành cây / ветка" },
+    { "word": "選ぶ", "reading": "えらぶ", "meaning": "to choose / चुनना / chọn / выбирать" },
+    { "word": "遠慮", "reading": "えんりょする", "meaning": "to be reserved, to be restrained / संकोच करना / ngần ngại / сдерживаться" },
+    { "word": "おいでになる", "reading": "おいでになる", "meaning": "(respectful) to be / होना (सम्मानपूर्वक) / có mặt / быть (уважительно)" },
+    { "word": "お祝い", "reading": "おいわい", "meaning": "congratulation / बधाई / chúc mừng / поздравление" },
+    { "word": "おかげ", "reading": "おかげ", "meaning": "owing to, thanks to / के कारण / nhờ / благодаря" },
+    { "word": "おかしい", "reading": "おかしい", "meaning": "strange or funny / अजीब / buồn cười / странный" },
+    { "word": "億", "reading": "おく", "meaning": "one hundred million / एक करोड़ / một trăm triệu / сто миллионов" },
+    { "word": "屋上", "reading": "おくじょう", "meaning": "rooftop / छत / mái nhà / крыша" },
+    { "word": "贈り物", "reading": "おくりもの", "meaning": "gift / उपहार / quà tặng / подарок" },
+    { "word": "送る", "reading": "おくる", "meaning": "to send / भेजना / gửi / отправлять" },
+    { "word": "遅れる", "reading": "おくれる", "meaning": "to be late / देर होना / muộn / опаздывать" },
+    { "word": "起す", "reading": "おこす", "meaning": "to wake / जगाना / đánh thức / будить" },
+    { "word": "行う", "reading": "おこなう", "meaning": "to do / करना / thực hiện / делать" },
+    { "word": "怒る", "reading": "おこる", "meaning": "to get angry, to be angry / गुस्सा होना / tức giận / сердиться" },
+    { "word": "押し入れ", "reading": "おしいれ", "meaning": "closet / अलमारी / tủ quần áo / шкаф" },
+    { "word": "お嬢さん", "reading": "おじょうさん", "meaning": "young lady / बेटी / cô gái / молодая леди" },
+    { "word": "お宅", "reading": "おたく", "meaning": "(polite) your house / घर (सज्जन) / nhà (lịch sự) / ваш дом" },
+    { "word": "落ちる", "reading": "おちる", "meaning": "to fall or drop / गिरना / rơi / падать" },
+    { "word": "おっしゃる", "reading": "おっしゃる", "meaning": "(respectful) to say / कहना (सम्मानपूर्वक) / nói / сказать" },
+    { "word": "夫", "reading": "おっと", "meaning": "husband / पति / chồng / муж" },
+    { "word": "驚く", "reading": "おどろく", "meaning": "to be surprised / हैरान होना / ngạc nhiên / удивляться" },
+    { "word": "おとなしい", "reading": "おとなしい", "meaning": "quiet / शांत / ngoan / тихий" },
+    { "word": "おどり", "reading": "おどり", "meaning": "dance / नृत्य / nhảy múa / танец" },
+    { "word": "お腹", "reading": "おなか", "meaning": "stomach / पेट / bụng / живот" },
+    { "word": "お兄さん", "reading": "おにいさん", "meaning": "older brother / बड़ा भाई / anh trai / старший брат" },
+    { "word": "お姉さん", "reading": "おねえさん", "meaning": "older sister / बड़ी बहन / chị gái / старшая сестра" },
+    { "word": "覚える", "reading": "おぼえる", "meaning": "to memorize / याद करना / ghi nhớ / запоминать" },
+    { "word": "おもしろい", "reading": "おもしろい", "meaning": "interesting / रोचक / thú vị / интересный" },
+    { "word": "おもちゃ", "reading": "おもちゃ", "meaning": "toy / खिलौना / đồ chơi / игрушка" },
+    { "word": "重い", "reading": "おもい", "meaning": "heavy / भारी / nặng / тяжёлый" },
+    { "word": "思い出", "reading": "おもいで", "meaning": "memory / याद / ký ức / воспоминание" },
+    { "word": "泳ぐ", "reading": "およぐ", "meaning": "to swim / तैरना / bơi / плавать" },
+    { "word": "降りる", "reading": "おりる", "meaning": "to get off / उतरना / xuống / выходить" },
+    { "word": "折る", "reading": "おる", "meaning": "to break, to fold / तोड़ना / gấp / ломать" },
+    { "word": "降る", "reading": "ふる", "meaning": "to fall (rain, snow) / गिरना / rơi / падать" },
+    { "word": "お礼", "reading": "おれい", "meaning": "thanks / धन्यवाद / cảm ơn / благодарность" },
+    { "word": "海", "reading": "うみ", "meaning": "sea / समुद्र / biển / море" },
+    { "word": "生まれる", "reading": "うまれる", "meaning": "to be born / जन्म लेना / được sinh ra / родиться" },
+    { "word": "旨い", "reading": "うまい", "meaning": "delicious / स्वादिष्ट / ngon / вкусный" },
+    { "word": "歌", "reading": "うた", "meaning": "song / गीत / bài hát / песня" },
+    { "word": "歌う", "reading": "うたう", "meaning": "to sing / गाना / hát / петь" },
+    { "word": "内", "reading": "うち", "meaning": "inside / अंदर / bên trong / внутри" },
+    { "word": "動物", "reading": "どうぶつ", "meaning": "animal / जानवर / động vật / животное" },
+    { "word": "映す", "reading": "うつす", "meaning": "to project / दिखाना / chiếu / показывать" },
+    { "word": "写る", "reading": "うつる", "meaning": "to be photographed / दिखाई देना / được chụp / быть сфотографированным" },
+    { "word": "歌手", "reading": "かしゅ", "meaning": "singer / गायक / ca sĩ / певец" },
+    { "word": "風", "reading": "かぜ", "meaning": "wind / हवा / gió / ветер" },
+    { "word": "風邪", "reading": "かぜ", "meaning": "cold (illness) / जुकाम / cảm lạnh / простуда" },
+    { "word": "貸す", "reading": "かす", "meaning": "to lend / उधार देना / cho vay / одалживать" },
+    { "word": "勝つ", "reading": "かつ", "meaning": "to win / जीतना / thắng / выигрывать" },
+    { "word": "傘", "reading": "かさ", "meaning": "umbrella / छाता / ô / зонтик" },
+    { "word": "簡単", "reading": "かんたん", "meaning": "simple / आसान / đơn giản / простой" },
+    { "word": "家", "reading": "いえ / うち", "meaning": "house / घर / nhà / дом" },
+    { "word": "家具", "reading": "かぐ", "meaning": "furniture / फर्नीचर / đồ đạc / мебель" },
+    { "word": "顔", "reading": "かお", "meaning": "face / चेहरा / khuôn mặt / лицо" },
+    { "word": "書く", "reading": "かく", "meaning": "to write / लिखना / viết / писать" },
+    { "word": "角", "reading": "かど", "meaning": "corner / कोना / góc / угол" },
+    { "word": "肩", "reading": "かた", "meaning": "shoulder / कंधा / vai / плечо" },
+    { "word": "方", "reading": "かた", "meaning": "person (polite) / व्यक्ति / người / человек" },
+    { "word": "固い", "reading": "かたい", "meaning": "hard / कठोर / cứng / твёрдый" },
+    { "word": "片付ける", "reading": "かたづける", "meaning": "to tidy up / साफ़ करना / dọn dẹp / убирать" },
+    { "word": "肩", "reading": "かた", "meaning": "shoulder / कंधा / vai / плечо" },
+    { "word": "勝手", "reading": "かって", "meaning": "selfish / स्वार्थी / ích kỷ / эгоистичный" },
+    { "word": "課題", "reading": "かだい", "meaning": "task / कार्य / nhiệm vụ / задача" },
+    { "word": "片方", "reading": "かたほう", "meaning": "one side / एक तरफ / một bên / одна сторона" },
+    { "word": "肩書き", "reading": "かたがき", "meaning": "title / शीर्षक / chức danh / должность" },
+    { "word": "勝利", "reading": "しょうり", "meaning": "victory / विजय / chiến thắng / победа" },
+    { "word": "学ぶ", "reading": "まなぶ", "meaning": "to learn / सीखना / học / учить" },
+    { "word": "家族", "reading": "かぞく", "meaning": "family / परिवार / gia đình / семья" },
+    { "word": "風呂", "reading": "ふろ", "meaning": "bath / बाथ / bồn tắm / ванна" },
+    { "word": "傘", "reading": "かさ", "meaning": "umbrella / छाता / ô / зонтик" },
+    { "word": "借りる", "reading": "かりる", "meaning": "to borrow / उधार लेना / mượn / брать взаймы" },
+    { "word": "辛い", "reading": "からい", "meaning": "spicy / मसालेदार / cay / острый" },
+    { "word": "軽い", "reading": "かるい", "meaning": "light / हल्का / nhẹ / лёгкий" },
+    { "word": "かわいい", "reading": "かわいい", "meaning": "cute / प्यारा / dễ thương / милый" },
+    { "word": "代わり", "reading": "かわり", "meaning": "replacement / प्रतिस्थापन / thay thế / замена" },
+    { "word": "乾く", "reading": "かわく", "meaning": "to get dry / सूखना / khô / сушиться" },
+    { "word": "川", "reading": "かわ", "meaning": "river / नदी / sông / река" },
+    { "word": "体", "reading": "からだ", "meaning": "body / शरीर / cơ thể / тело" },
+    { "word": "気", "reading": "き", "meaning": "spirit, feeling / मन / tinh thần / дух" },
+    { "word": "木", "reading": "き", "meaning": "tree / पेड़ / cây / дерево" },
+    { "word": "黄色", "reading": "きいろ", "meaning": "yellow / पीला / màu vàng / жёлтый" },
+    { "word": "聞く", "reading": "きく", "meaning": "to listen / सुनना / nghe / слушать" },
+    { "word": "着く", "reading": "つく", "meaning": "to arrive / पहुँच जाना / đến / прибывать" },
+    { "word": "効く", "reading": "きく", "meaning": "to be effective / असर करना / có hiệu quả / быть эффективным" },
+    { "word": "切る", "reading": "きる", "meaning": "to cut / काटना / cắt / резать" },
+    { "word": "消す", "reading": "けす", "meaning": "to erase / मिटाना / xóa / стирать" },
+    { "word": "決める", "reading": "きめる", "meaning": "to decide / तय करना / quyết định / решать" },
+    { "word": "記憶", "reading": "きおく", "meaning": "memory / स्मृति / ký ức / память" },
+    { "word": "希望", "reading": "きぼう", "meaning": "hope / आशा / hy vọng / надежда" },
+    { "word": "着る", "reading": "きる", "meaning": "to wear / पहनना / mặc / надевать" },
+    { "word": "北", "reading": "きた", "meaning": "north / उत्तर / bắc / север" },
+    { "word": "気持ち", "reading": "きもち", "meaning": "feeling / भावना / cảm giác / чувство" },
+    { "word": "記者", "reading": "きしゃ", "meaning": "reporter / पत्रकार / nhà báo / журналист" },
+    { "word": "切手", "reading": "きって", "meaning": "stamp / डाक टिकट / tem / марка" },
+    { "word": "銀行", "reading": "ぎんこう", "meaning": "bank / बैंक / ngân hàng / банк" },
+    { "word": "休む", "reading": "やすむ", "meaning": "to rest / आराम करना / nghỉ / отдыхать" },
+    { "word": "昨日", "reading": "きのう", "meaning": "yesterday / कल / hôm qua / вчера" },
+    { "word": "気分", "reading": "きぶん", "meaning": "mood / मूड / tâm trạng / настроение" },
+    { "word": "記念", "reading": "きねん", "meaning": "commemoration / स्मरण / kỷ niệm / памятный" },
+    { "word": "義務", "reading": "ぎむ", "meaning": "duty / कर्तव्य / nghĩa vụ / обязанность" },
+    { "word": "器用", "reading": "きよう", "meaning": "skillful / कुशल / khéo léo / умелый" },
+    { "word": "近く", "reading": "ちかく", "meaning": "near / पास / gần / рядом" },
+    { "word": "聞こえる", "reading": "きこえる", "meaning": "to be heard / सुनाई देना / nghe thấy / слышаться" },
+    { "word": "企業", "reading": "きぎょう", "meaning": "enterprise / उद्यम / doanh nghiệp / предприятие" },
+    { "word": "帰る", "reading": "かえる", "meaning": "to return / लौटना / về / возвращаться" },
+    { "word": "教える", "reading": "おしえる", "meaning": "to teach / सिखाना / dạy / преподавать" },
+    { "word": "押す", "reading": "おす", "meaning": "to push / दबाना / đẩy / нажимать" },
+    { "word": "遅い", "reading": "おそい", "meaning": "slow / धीमा / chậm / медленный" },
+    { "word": "恐ろしい", "reading": "おそろしい", "meaning": "terrible / भयानक / đáng sợ / ужасный" },
+    { "word": "重い", "reading": "おもい", "meaning": "heavy / भारी / nặng / тяжёлый" },
+    { "word": "面白い", "reading": "おもしろい", "meaning": "interesting / रोचक / thú vị / интересный" },
+    { "word": "お金", "reading": "おかね", "meaning": "money / पैसा / tiền / деньги" },
+    { "word": "起きる", "reading": "おきる", "meaning": "to get up / उठना / thức dậy / вставать" },
+    { "word": "置く", "reading": "おく", "meaning": "to put / रखना / đặt / класть" },
+    { "word": "奥", "reading": "おく", "meaning": "inner part / अंदर / phía trong / внутренность" },
+    { "word": "驚く", "reading": "おどろく", "meaning": "to be surprised / आश्चर्यचकित होना / ngạc nhiên / удивляться" },
+    { "word": "送る", "reading": "おくる", "meaning": "to send / भेजना / gửi / отправлять" },
+    { "word": "起こす", "reading": "おこす", "meaning": "to wake someone / जगाना / đánh thức / будить" },
+    { "word": "怒る", "reading": "おこる", "meaning": "to get angry / गुस्सा होना / tức giận / сердиться" },
+    { "word": "お菓子", "reading": "おかし", "meaning": "sweets / मिठाई / bánh kẹo / сладости" },
+    { "word": "親", "reading": "おや", "meaning": "parent / माता-पिता / cha mẹ / родитель" },
+    { "word": "大人", "reading": "おとな", "meaning": "adult / वयस्क / người lớn / взрослый" },
+    { "word": "お腹", "reading": "おなか", "meaning": "stomach / पेट / bụng / живот" },
+    { "word": "音", "reading": "おと", "meaning": "sound / ध्वनि / âm thanh / звук" },
+    { "word": "お祝い", "reading": "おいわい", "meaning": "celebration / जश्न / lễ kỷ niệm / праздник" },
+    { "word": "多い", "reading": "おおい", "meaning": "many / बहुत / nhiều / много" },
+    { "word": "大きい", "reading": "おおきい", "meaning": "big / बड़ा / to / большой" },
+    { "word": "大切", "reading": "たいせつ", "meaning": "important / महत्वपूर्ण / quan trọng / важный" },
+    { "word": "太陽", "reading": "たいよう", "meaning": "sun / सूरज / mặt trời / солнце" },
+    { "word": "台所", "reading": "だいどころ", "meaning": "kitchen / रसोई / nhà bếp / кухня" },
+    { "word": "大丈夫", "reading": "だいじょうぶ", "meaning": "all right / ठीक / ổn / в порядке" },
+    { "word": "大好き", "reading": "だいすき", "meaning": "love very much / बहुत पसंद / rất thích / очень нравится" },
+    { "word": "誰", "reading": "だれ", "meaning": "who / कौन / ai / кто" },
+    { "word": "出す", "reading": "だす", "meaning": "to take out / निकालना / đưa ra / вынуть" },
+    { "word": "出る", "reading": "でる", "meaning": "to exit / निकलना / ra / выходить" },
+    { "word": "手", "reading": "て", "meaning": "hand / हाथ / tay / рука" },
+    { "word": "天気", "reading": "てんき", "meaning": "weather / मौसम / thời tiết / погода" },
+    { "word": "点", "reading": "てん", "meaning": "point / बिंदु / điểm / точка" },
+    { "word": "手伝う", "reading": "てつだう", "meaning": "to help / मदद करना / giúp / помогать" },
+    { "word": "手紙", "reading": "てがみ", "meaning": "letter / पत्र / thư / письмо" },
+    { "word": "電車", "reading": "でんしゃ", "meaning": "train / ट्रेन / tàu điện / поезд" },
+    { "word": "電話", "reading": "でんわ", "meaning": "telephone / फोन / điện thoại / телефон" },
+    { "word": "店", "reading": "みせ", "meaning": "shop / दुकान / cửa hàng / магазин" },
+    { "word": "出発", "reading": "しゅっぱつ", "meaning": "departure / प्रस्थान / khởi hành / отправление" },
+    { "word": "出来る", "reading": "できる", "meaning": "can do / कर सकते हैं / có thể / мочь" },
+    { "word": "出迎え", "reading": "でむかえ", "meaning": "welcome / स्वागत / đón / встреча" },
+    { "word": "出席", "reading": "しゅっせき", "meaning": "attendance / हाज़िरी / tham dự / присутствие" },
+    { "word": "電気", "reading": "でんき", "meaning": "electricity / बिजली / điện / электричество" },
+    { "word": "低い", "reading": "ひくい", "meaning": "low / नीचा / thấp / низкий" },
+    { "word": "引く", "reading": "ひく", "meaning": "to pull / खींचना / kéo / тянуть" },
+    { "word": "弾く", "reading": "ひく", "meaning": "to play (string instrument) / बजाना / chơi nhạc cụ / играть" },
+    { "word": "悲しい", "reading": "かなしい", "meaning": "sad / दुखी / buồn / грустный" },
+    { "word": "飛ぶ", "reading": "とぶ", "meaning": "to fly / उड़ना / bay / летать" },
+    { "word": "日", "reading": "ひ", "meaning": "day / दिन / ngày / день" },
+    { "word": "火", "reading": "ひ", "meaning": "fire / आग / lửa / огонь" },
+    { "word": "光", "reading": "ひかり", "meaning": "light / प्रकाश / ánh sáng / свет" },
+    { "word": "昼", "reading": "ひる", "meaning": "daytime / दिन / ban ngày / день" },
+    { "word": "昼ご飯", "reading": "ひるごはん", "meaning": "lunch / दोपहर का भोजन / cơm trưa / обед" },
+    { "word": "秘密", "reading": "ひみつ", "meaning": "secret / रहस्य / bí mật / секрет" },
+    { "word": "冷たい", "reading": "つめたい", "meaning": "cold / ठंडा / lạnh / холодный" },
+    { "word": "不便", "reading": "ふべん", "meaning": "inconvenient / असुविधाजनक / bất tiện / неудобный" },
+    { "word": "古い", "reading": "ふるい", "meaning": "old / पुराना / cũ / старый" },
+    { "word": "文化", "reading": "ぶんか", "meaning": "culture / संस्कृति / văn hóa / культура" },
+    { "word": "分かる", "reading": "わかる", "meaning": "to understand / समझना / hiểu / понимать" },
+    { "word": "忘れる", "reading": "わすれる", "meaning": "to forget / भूलना / quên / забывать" },
+    { "word": "私", "reading": "わたし", "meaning": "I / मैं / tôi / я" },
+    { "word": "私達", "reading": "わたしたち", "meaning": "we / हम / chúng tôi / мы" },
+    { "word": "渡る", "reading": "わたる", "meaning": "to cross / पार करना / đi qua / переходить" },
+    { "word": "会社", "reading": "かいしゃ", "meaning": "company / कंपनी / công ty / компания" },
+    { "word": "会う", "reading": "あう", "meaning": "to meet / मिलना / gặp / встречать" },
+    { "word": "開ける", "reading": "あける", "meaning": "to open / खोलना / mở / открывать" },
+    { "word": "上げる", "reading": "あげる", "meaning": "to give / देना / cho / давать" },
+    { "word": "明るい", "reading": "あかるい", "meaning": "bright / उज्जवल / sáng / светлый" },
+    { "word": "赤い", "reading": "あかい", "meaning": "red / लाल / đỏ / красный" },
+    { "word": "秋", "reading": "あき", "meaning": "autumn / पतझड़ / mùa thu / осень" },
+    { "word": "朝", "reading": "あさ", "meaning": "morning / सुबह / buổi sáng / утро" },
+    { "word": "浅い", "reading": "あさい", "meaning": "shallow / उथला / nông / мелкий" },
+    { "word": "足", "reading": "あし", "meaning": "foot / पैर / chân / нога" },
+    { "word": "明日", "reading": "あした", "meaning": "tomorrow / कल / ngày mai / завтра" },
+    { "word": "遊ぶ", "reading": "あそぶ", "meaning": "to play / खेलना / chơi / играть" },
+    { "word": "頭", "reading": "あたま", "meaning": "head / सिर / đầu / голова" },
+    { "word": "暖かい", "reading": "あたたかい", "meaning": "warm / गर्म / ấm áp / тёплый" },
+    { "word": "当たる", "reading": "あたる", "meaning": "to hit / लगना / trúng / попадать" },
+    { "word": "新しい", "reading": "あたらしい", "meaning": "new / नया / mới / новый" },
+    { "word": "兄", "reading": "あに", "meaning": "older brother / बड़ा भाई / anh trai / старший брат" },
+    { "word": "姉", "reading": "あね", "meaning": "older sister / बड़ी बहन / chị gái / старшая сестра" },
+    { "word": "雨", "reading": "あめ", "meaning": "rain / बारिश / mưa / дождь" },
+    { "word": "飴", "reading": "あめ", "meaning": "candy / मिठाई / kẹo / конфета" },
+    { "word": "洗う", "reading": "あらう", "meaning": "to wash / धोना / rửa / мыть" },
+    { "word": "歩く", "reading": "あるく", "meaning": "to walk / चलना / đi bộ / ходить" },
+    { "word": "ある", "reading": "ある", "meaning": "to exist (inanimate) / होना / có / существовать" },
+    { "word": "有名", "reading": "ゆうめい", "meaning": "famous / प्रसिद्ध / nổi tiếng / известный" },
+    { "word": "言う", "reading": "いう", "meaning": "to say / कहना / nói / сказать" },
+    { "word": "家", "reading": "いえ", "meaning": "house / घर / nhà / дом" },
+    { "word": "医者", "reading": "いしゃ", "meaning": "doctor / डॉक्टर / bác sĩ / врач" },
+    { "word": "忙しい", "reading": "いそがしい", "meaning": "busy / व्यस्त / bận / занятой" },
+    { "word": "痛い", "reading": "いたい", "meaning": "painful / दर्द / đau / больно" },
+    { "word": "一緒", "reading": "いっしょ", "meaning": "together / साथ / cùng / вместе" },
+    { "word": "一番", "reading": "いちばん", "meaning": "number one / सबसे अच्छा / nhất / лучший" },
+    { "word": "五", "reading": "ご", "meaning": "five / पाँच / năm / пять" },
+    { "word": "今", "reading": "いま", "meaning": "now / अब / bây giờ / сейчас" },
+    { "word": "意味", "reading": "いみ", "meaning": "meaning / अर्थ / ý nghĩa / значение" },
+    { "word": "忙しい", "reading": "いそがしい", "meaning": "busy / व्यस्त / bận rộn / занятой" },
+    { "word": "入口", "reading": "いりぐち", "meaning": "entrance / प्रवेश / lối vào / вход" },
+    { "word": "犬", "reading": "いぬ", "meaning": "dog / कुत्ता / chó / собака" },
+    { "word": "居る", "reading": "いる", "meaning": "to exist (animate) / होना / có / существовать" },
+    { "word": "色", "reading": "いろ", "meaning": "color / रंग / màu sắc / цвет" },
+    { "word": "一日", "reading": "いちにち", "meaning": "one day / एक दिन / một ngày / один день" },
+    { "word": "意見", "reading": "いけん", "meaning": "opinion / राय / ý kiến / мнение" },
+    { "word": "以上", "reading": "いじょう", "meaning": "more than / से अधिक / hơn / более" },
+    { "word": "以下", "reading": "いか", "meaning": "less than / से कम / dưới / меньше" },
+    { "word": "以外", "reading": "いがい", "meaning": "except / के अलावा / ngoại trừ / кроме" },
+    { "word": "医院", "reading": "いいん", "meaning": "clinic / क्लिनिक / phòng khám / клиника" },
+    { "word": "いとこ", "reading": "いとこ", "meaning": "cousin / चचेरा भाई / anh/chị em họ / кузен" },
+    { "word": "池", "reading": "いけ", "meaning": "pond / तालाब / ao / пруд" },
+    { "word": "一人", "reading": "ひとり", "meaning": "one person / एक व्यक्ति / một người / один человек" },
+    { "word": "色々", "reading": "いろいろ", "meaning": "various / विभिन्न / nhiều loại / разнообразный" },
+    { "word": "家族", "reading": "かぞく", "meaning": "family / परिवार / gia đình / семья" },
+    { "word": "火曜日", "reading": "かようび", "meaning": "Tuesday / मंगलवार / thứ ba / вторник" },
+    { "word": "顔", "reading": "かお", "meaning": "face / चेहरा / mặt / лицо" },
+    { "word": "角", "reading": "かど", "meaning": "corner / कोना / góc / угол" },
+    { "word": "風", "reading": "かぜ", "meaning": "wind / हवा / gió / ветер" },
+    { "word": "風邪", "reading": "かぜ", "meaning": "cold / सर्दी / cảm lạnh / простуда" },
+    { "word": "科学", "reading": "かがく", "meaning": "science / विज्ञान / khoa học / наука" },
+    { "word": "火山", "reading": "かざん", "meaning": "volcano / ज्वालामुखी / núi lửa / вулкан" },
+    { "word": "家具", "reading": "かぐ", "meaning": "furniture / फर्नीचर / đồ nội thất / мебель" },
+    { "word": "書く", "reading": "かく", "meaning": "to write / लिखना / viết / писать" },
+    { "word": "画家", "reading": "がか", "meaning": "painter / चित्रकार / họa sĩ / художник" },
+    { "word": "学生", "reading": "がくせい", "meaning": "student / छात्र / học sinh / студент" },
+    { "word": "学校", "reading": "がっこう", "meaning": "school / स्कूल / trường học / школа" },
+    { "word": "家具店", "reading": "かぐてん", "meaning": "furniture store / फर्नीचर की दुकान / cửa hàng đồ nội thất / мебельный магазин" },
+    { "word": "果物", "reading": "くだもの", "meaning": "fruit / फल / trái cây / фрукт" },
+    { "word": "靴", "reading": "くつ", "meaning": "shoes / जूते / giày / обувь" },
+    { "word": "靴下", "reading": "くつした", "meaning": "socks / मोज़े / tất / носки" },
+    { "word": "九", "reading": "きゅう", "meaning": "nine / नौ / chín / девять" },
+    { "word": "牛肉", "reading": "ぎゅうにく", "meaning": "beef / गोमांस / thịt bò / говядина" },
+    { "word": "銀行", "reading": "ぎんこう", "meaning": "bank / बैंक / ngân hàng / банк" },
+    { "word": "休み", "reading": "やすみ", "meaning": "holiday / छुट्टी / ngày nghỉ / отдых" },
+    { "word": "休む", "reading": "やすむ", "meaning": "to rest / आराम करना / nghỉ / отдыхать" },
+    { "word": "八", "reading": "はち", "meaning": "eight / आठ / tám / восемь" },
+    { "word": "花", "reading": "はな", "meaning": "flower / फूल / hoa / цветок" },
+    { "word": "鼻", "reading": "はな", "meaning": "nose / नाक / mũi / нос" },
+    { "word": "話", "reading": "はなし", "meaning": "talk / बात / câu chuyện / разговор" },
+    { "word": "話す", "reading": "はなす", "meaning": "to speak / बोलना / nói / говорить" },
+    { "word": "母", "reading": "はは", "meaning": "mother / माँ / mẹ / мать" },
+    { "word": "弟", "reading": "おとうと", "meaning": "younger brother / छोटा भाई / em trai / младший брат" },
+    { "word": "妹", "reading": "いもうと", "meaning": "younger sister / छोटी बहन / em gái / младшая сестра" },
+    { "word": "昼休み", "reading": "ひるやすみ", "meaning": "lunch break / दोपहर का अवकाश / nghỉ trưa / обеденный перерыв" },
+    { "word": "半分", "reading": "はんぶん", "meaning": "half / आधा / một nửa / половина" },
+    { "word": "八百屋", "reading": "やおや", "meaning": "greengrocer / सब्जी की दुकान / cửa hàng rau / овощной магазин" },
+    { "word": "早い", "reading": "はやい", "meaning": "early / जल्दी / sớm / ранний" },
+    { "word": "速い", "reading": "はやい", "meaning": "fast / तेज़ / nhanh / быстрый" },
+    { "word": "春", "reading": "はる", "meaning": "spring / वसंत / mùa xuân / весна" },
+    { "word": "波", "reading": "なみ", "meaning": "wave / लहर / sóng / волна" },
+    { "word": "番", "reading": "ばん", "meaning": "number / संख्या / số / номер" },
+    { "word": "晩ご飯", "reading": "ばんごはん", "meaning": "dinner / रात का खाना / cơm tối / ужин" },
+    { "word": "美しい", "reading": "うつくしい", "meaning": "beautiful / सुंदर / đẹp / красивый" },
+    { "word": "美術館", "reading": "びじゅつかん", "meaning": "art museum / कला संग्रहालय / bảo tàng mỹ thuật / художественный музей" },
+    { "word": "引き出し", "reading": "ひきだし", "meaning": "drawer / दराज / ngăn kéo / ящик" },
+    { "word": "光る", "reading": "ひかる", "meaning": "to shine / चमकना / tỏa sáng / светить" },
+    { "word": "便利", "reading": "べんり", "meaning": "convenient / सुविधाजनक / tiện lợi / удобный" },
+    { "word": "勉強", "reading": "べんきょう", "meaning": "study / अध्ययन / học tập / учёба" },
+    { "word": "本", "reading": "ほん", "meaning": "book / किताब / sách / книга" },
+    { "word": "本屋", "reading": "ほんや", "meaning": "bookstore / किताबों की दुकान / nhà sách / книжный магазин" },
+    { "word": "毎日", "reading": "まいにち", "meaning": "every day / हर दिन / mỗi ngày / каждый день" },
+    { "word": "毎朝", "reading": "まいあさ", "meaning": "every morning / हर सुबह / mỗi sáng / каждое утро" },
+    { "word": "毎晩", "reading": "まいばん", "meaning": "every night / हर रात / mỗi tối / каждая ночь" },
+    { "word": "間", "reading": "あいだ", "meaning": "between / बीच में / giữa / между" },
+    { "word": "曲がる", "reading": "まがる", "meaning": "to turn / मुड़ना / rẽ / поворачивать" },
+    { "word": "丸い", "reading": "まるい", "meaning": "round / गोल / tròn / круглый" },
+    { "word": "町", "reading": "まち", "meaning": "town / शहर / thị trấn / город" },
+    { "word": "待つ", "reading": "まつ", "meaning": "to wait / इंतजार करना / chờ / ждать" },
+    { "word": "間違う", "reading": "まちがう", "meaning": "to be mistaken / गलत होना / nhầm / ошибаться" },
+    { "word": "間違える", "reading": "まちがえる", "meaning": "to make a mistake / गलती करना / làm sai / делать ошибку" },
+    { "word": "窓", "reading": "まど", "meaning": "window / खिड़की / cửa sổ / окно" },
+    { "word": "丸", "reading": "まる", "meaning": "circle / वृत्त / vòng tròn / круг" },
+    { "word": "真ん中", "reading": "まんなか", "meaning": "middle / बीच / giữa / середина" },
+    { "word": "丸い", "reading": "まるい", "meaning": "round / गोल / tròn / круглый" },
+    { "word": "万", "reading": "まん", "meaning": "ten thousand / दस हज़ार / vạn / десять тысяч" },
+    { "word": "未来", "reading": "みらい", "meaning": "future / भविष्य / tương lai / будущее" },
+    { "word": "道", "reading": "みち", "meaning": "road / सड़क / đường / дорога" },
+    { "word": "水", "reading": "みず", "meaning": "water / पानी / nước / вода" },
+    { "word": "味", "reading": "あじ", "meaning": "taste / स्वाद / vị / вкус" },
+    { "word": "緑", "reading": "みどり", "meaning": "green / हरा / màu xanh lá / зелёный" },
+    { "word": "見せる", "reading": "みせる", "meaning": "to show / दिखाना / cho xem / показывать" },
+    { "word": "見る", "reading": "みる", "meaning": "to see / देखना / nhìn / видеть" },
+    { "word": "皆", "reading": "みんな", "meaning": "everyone / सभी / mọi người / все" },
+    { "word": "向かう", "reading": "むかう", "meaning": "to face / सामना करना / hướng về / направляться" },
+    { "word": "向こう", "reading": "むこう", "meaning": "over there / वहाँ / phía bên kia / там" },
+    { "word": "村", "reading": "むら", "meaning": "village / गाँव / làng / деревня" },
+    { "word": "六", "reading": "ろく", "meaning": "six / छह / sáu / шесть" },
+    { "word": "六日", "reading": "むいか", "meaning": "sixth day / छठा दिन / ngày sáu / шестой день" },
+    { "word": "木", "reading": "き", "meaning": "tree / पेड़ / cây / дерево" },
+    { "word": "木曜日", "reading": "もくようび", "meaning": "Thursday / गुरुवार / thứ năm / четверг" },
+    { "word": "文字", "reading": "もじ", "meaning": "character / अक्षर / chữ / символ" },
+    { "word": "物", "reading": "もの", "meaning": "thing / चीज़ / vật / вещь" },
+    { "word": "持つ", "reading": "もつ", "meaning": "to hold / पकड़ना / cầm / держать" },
+    { "word": "戻る", "reading": "もどる", "meaning": "to return / लौटना / quay lại / возвращаться" },
+    { "word": "問題", "reading": "もんだい", "meaning": "problem / समस्या / vấn đề / проблема" },
+    { "word": "夜", "reading": "よる", "meaning": "night / रात / ban đêm / ночь" },
+    { "word": "夜中", "reading": "よなか", "meaning": "midnight / आधी रात / nửa đêm / полночь" },
+    { "word": "四", "reading": "し", "meaning": "four / चार / bốn / четыре" },
+    { "word": "四日", "reading": "よっか", "meaning": "fourth day / चौथा दिन / ngày bốn / четвертый день" },
+    { "word": "来る", "reading": "くる", "meaning": "to come / आना / đến / приходить" },
+    { "word": "来週", "reading": "らいしゅう", "meaning": "next week / अगले हफ़्ते / tuần sau / следующая неделя" },
+    { "word": "来月", "reading": "らいげつ", "meaning": "next month / अगले महीने / tháng sau / следующий месяц" },
+    { "word": "旅行", "reading": "りょこう", "meaning": "travel / यात्रा / du lịch / путешествие" },
+    { "word": "利用", "reading": "りよう", "meaning": "use / उपयोग / sử dụng / использование" },
+    { "word": "理科", "reading": "りか", "meaning": "science / विज्ञान / khoa học / наука" },
+    { "word": "林", "reading": "はやし", "meaning": "woods / जंगल / rừng / лес" },
+    { "word": "練習", "reading": "れんしゅう", "meaning": "practice / अभ्यास / luyện tập / практика" },
+    { "word": "連絡", "reading": "れんらく", "meaning": "contact / संपर्क / liên lạc / контакт" },
+    { "word": "老いる", "reading": "おいる", "meaning": "to grow old / बूढ़ा होना / già đi / стареть" },
+    { "word": "和", "reading": "わ", "meaning": "harmony / सामंजस्य / hòa / гармония" },
+    { "word": "笑う", "reading": "わらう", "meaning": "to laugh / हँसना / cười / смеяться" },
+    { "word": "私", "reading": "わたし", "meaning": "I / मैं / tôi / я" },
+    { "word": "分かる", "reading": "わかる", "meaning": "to understand / समझना / hiểu / понимать" },
+    { "word": "若い", "reading": "わかい", "meaning": "young / जवान / trẻ / молодой" },
+    { "word": "悪い", "reading": "わるい", "meaning": "bad / बुरा / xấu / плохой" },
+    { "word": "笑顔", "reading": "えがお", "meaning": "smiling face / मुस्कुराता हुआ चेहरा / mặt cười / улыбающееся лицо" },
+    { "word": "少女", "reading": "しょうじょ", "meaning": "girl / लड़की / thiếu nữ / девочка" },
+    { "word": "舟", "reading": "ふね", "meaning": "boat / नाव / thuyền / лодка" },
+    { "word": "不便", "reading": "ふべん", "meaning": "inconvenience / असुविधा / bất tiện / неудобство" },
+    { "word": "踏む", "reading": "ふむ", "meaning": "to step on / पर रखना / dẫm / наступать" },
+    { "word": "降り出す", "reading": "ふりだす", "meaning": "to start to rain / बारिश शुरू होना / bắt đầu mưa / начинать идти дождь" },
+    { "word": "文化", "reading": "ぶんか", "meaning": "culture / संस्कृति / văn hóa / культура" },
+    { "word": "文学", "reading": "ぶんがく", "meaning": "literature / साहित्य / văn học / литература" },
+    { "word": "文法", "reading": "ぶんぽう", "meaning": "grammar / व्याकरण / ngữ pháp / грамматика" },
+    { "word": "別", "reading": "べつ", "meaning": "different / अलग / khác / другой" },
+    { "word": "変", "reading": "へん", "meaning": "strange / अजीब / lạ / странный" },
+    { "word": "返事", "reading": "へんじ", "meaning": "reply / उत्तर / trả lời / ответ" },
+    { "word": "貿易", "reading": "ぼうえき", "meaning": "trade / व्यापार / thương mại / торговля" },
+    { "word": "法律", "reading": "ほうりつ", "meaning": "law / कानून / pháp luật / закон" },
+    { "word": "僕", "reading": "ぼく", "meaning": "I (used by males) / मैं (पुरुष उपयोग) / tôi / я" },
+    { "word": "星", "reading": "ほし", "meaning": "star / तारा / sao / звезда" },
+    { "word": "ほとんど", "reading": "ほとんど", "meaning": "mostly / अधिकांश / hầu hết / почти" },
+    { "word": "ほめる", "reading": "ほめる", "meaning": "to praise / प्रशंसा करना / khen / хвалить" },
+    { "word": "翻訳", "reading": "ほんやく", "meaning": "translation / अनुवाद / dịch / перевод" },
+    { "word": "参る", "reading": "まいる", "meaning": "(humble) to go, to come / जाना (विनम्र) / đi (khiêm tốn) / идти (скромно)" },
+    { "word": "負ける", "reading": "まける", "meaning": "to lose / हारना / thua / проиграть" },
+    { "word": "または", "reading": "または", "meaning": "or, otherwise / या / hoặc / или" },
+    { "word": "間違える", "reading": "まちがえる", "meaning": "to make a mistake / गलती करना / phạm sai lầm / ошибаться" },
+    { "word": "間に合う", "reading": "まにあう", "meaning": "to be in time for / समय पर पहुँचना / đúng giờ / успевать" },
+    { "word": "周り", "reading": "まわり", "meaning": "surroundings / चारों ओर / xung quanh / окружение" },
+    { "word": "回る", "reading": "まわる", "meaning": "to go around / चारों ओर घूमना / đi vòng quanh / вращаться" },
+    { "word": "漫画", "reading": "まんが", "meaning": "comic / कॉमिक / truyện tranh / комикс" },
+    { "word": "真中", "reading": "まんなか", "meaning": "middle / बीच / giữa / середина" },
+    { "word": "見える", "reading": "みえる", "meaning": "to be in sight / दिखाई देना / nhìn thấy / быть видимым" },
+    { "word": "湖", "reading": "みずうみ", "meaning": "lake / झील / hồ / озеро" },
+    { "word": "味噌", "reading": "みそ", "meaning": "miso, soybean paste / सोयाबीन पेस्ट / miso / мисо, соевая паста" },
+    { "word": "見つかる", "reading": "みつかる", "meaning": "to be discovered / खोजा जाना / được tìm thấy / быть найденным" },
+    { "word": "見つける", "reading": "みつける", "meaning": "to discover / ढूँढना / tìm thấy / находить" },
+    { "word": "皆", "reading": "みな", "meaning": "everybody / सभी / mọi người / все" },
+    { "word": "港", "reading": "みなと", "meaning": "harbor / बंदरगाह / cảng / порт" },
+    { "word": "向かう", "reading": "むかう", "meaning": "to face / सामना करना / hướng về / направляться" },
+    { "word": "迎える", "reading": "むかえる", "meaning": "to go out to meet / स्वागत करना / đón / встречать" },
+    { "word": "昔", "reading": "むかし", "meaning": "old times, long ago / पुराना समय / ngày xưa / давние времена" },
+    { "word": "虫", "reading": "むし", "meaning": "insect / कीड़ा / côn trùng / насекомое" },
+    { "word": "息子", "reading": "むすこ", "meaning": "(humble) son / पुत्र / con trai / сын" },
+    { "word": "娘", "reading": "むすめ", "meaning": "(humble) daughter / पुत्री / con gái / дочь" },
+    { "word": "無理", "reading": "むり", "meaning": "impossible / असंभव / vô lý / невозможный" },
+    { "word": "召し上がる", "reading": "めしあがる", "meaning": "(polite) to eat / खाना खाना / ăn / есть" },
+    { "word": "珍しい", "reading": "めずらしい", "meaning": "rare / दुर्लभ / hiếm / редкий" },
+    { "word": "申し上げる", "reading": "もうしあげる", "meaning": "(humble) to say / कहना / nói / сказать" },
+    { "word": "申す", "reading": "もうす", "meaning": "(humble) to be called, to say / कहना / nói / говорить" },
+    { "word": "もうすぐ", "reading": "もうすぐ", "meaning": "soon / शीघ्र ही / sắp / скоро" },
+    { "word": "もし", "reading": "もし", "meaning": "if / यदि / nếu / если" },
+    { "word": "戻る", "reading": "もどる", "meaning": "to turn back / वापस जाना / quay lại / возвращаться" },
+    { "word": "木綿", "reading": "もめん", "meaning": "cotton / कपास / bông / хлопок" },
+    { "word": "森", "reading": "もり", "meaning": "forest / जंगल / rừng / лес" },
+    { "word": "焼く", "reading": "やく", "meaning": "to bake, to grill / सेंकना / nướng / жарить" },
+    { "word": "約束", "reading": "やくそく", "meaning": "promise / वचन / lời hứa / обещание" },
+    { "word": "役に立つ", "reading": "やくにたつ", "meaning": "to be helpful / उपयोगी होना / có ích / быть полезным" },
+    { "word": "焼ける", "reading": "やける", "meaning": "to burn, to be roasted / जलना / cháy, nướng / гореть, поджариваться" },
+    { "word": "優しい", "reading": "やさしい", "meaning": "kind / दयालु / hiền / добрый" },
+    { "word": "痩せる", "reading": "やせる", "meaning": "to become thin / पतला होना / gầy đi / худеть" },
+    { "word": "やっと", "reading": "やっと", "meaning": "at last / आखिरकार / cuối cùng / наконец" },
+    { "word": "止む", "reading": "やむ", "meaning": "to stop / रुकना / ngừng / прекращаться" },
+    { "word": "止める", "reading": "やめる", "meaning": "to stop / रोकना / dừng / остановить" },
+    { "word": "柔らかい", "reading": "やわらかい", "meaning": "soft / मुलायम / mềm / мягкий" },
+    { "word": "湯", "reading": "ゆ", "meaning": "hot water / गर्म पानी / nước nóng / горячая вода" },
+    { "word": "指", "reading": "ゆび", "meaning": "finger / उंगली / ngón tay / палец" },
+    { "word": "指輪", "reading": "ゆびわ", "meaning": "ring / अंगूठी / nhẫn / кольцо" },
+    { "word": "夢", "reading": "ゆめ", "meaning": "dream / सपना / giấc mơ / мечта" },
+    { "word": "揺れる", "reading": "ゆれる", "meaning": "to shake, to sway / हिलना / rung / качаться" },
+    { "word": "用", "reading": "よう", "meaning": "use / उपयोग / sử dụng / использование" },
+    { "word": "用意", "reading": "ようい", "meaning": "preparation / तैयारी / chuẩn bị / подготовка" },
+    { "word": "用事", "reading": "ようじ", "meaning": "things to do / काम / việc / дела" },
+    { "word": "汚れる", "reading": "よごれる", "meaning": "to get dirty / गंदा होना / bị bẩn / загрязняться" },
+    { "word": "予習", "reading": "よしゅう", "meaning": "preparation for a lesson / तैयारी करना / chuẩn bị bài / подготовка к уроку" },
+    { "word": "予定", "reading": "よてい", "meaning": "arrangement / योजना / kế hoạch / план" },
+    { "word": "予約", "reading": "よやく", "meaning": "reservation / आरक्षण / đặt trước / бронирование" },
+    { "word": "寄る", "reading": "よる", "meaning": "to visit / रुकना / ghé / заходить" },
+    { "word": "喜ぶ", "reading": "よろこぶ", "meaning": "to be delighted / प्रसन्न होना / vui mừng / радоваться" },
+    { "word": "理由", "reading": "りゆう", "meaning": "reason / कारण / lý do / причина" },
+    { "word": "利用", "reading": "りよう", "meaning": "utilization / उपयोग / sử dụng / использование" },
+    { "word": "両方", "reading": "りょうほう", "meaning": "both sides / दोनों / cả hai / обе стороны" },
+    { "word": "旅館", "reading": "りょかん", "meaning": "Japanese hotel / जापानी होटल / nhà trọ kiểu Nhật / японская гостиница" },
+    { "word": "留守", "reading": "るす", "meaning": "absence / गैरमौजूदगी / vắng nhà / отсутствие" },
+    { "word": "冷房", "reading": "れいぼう", "meaning": "air conditioning / एयर कंडीशनिंग / điều hòa / кондиционер" },
+    { "word": "歴史", "reading": "れきし", "meaning": "history / इतिहास / lịch sử / история" },
+    { "word": "連絡", "reading": "れんらく", "meaning": "contact / संपर्क / liên lạc / связь" },
+    { "word": "沸かす", "reading": "わかす", "meaning": "to boil, to heat / उबालना / đun sôi / кипятить" },
+    { "word": "別れる", "reading": "わかれる", "meaning": "to separate / अलग होना / chia tay / расставаться" },
+    { "word": "沸く", "reading": "わく", "meaning": "to boil, to get excited / उबलना / sôi / кипеть" },
+    { "word": "訳", "reading": "わけ", "meaning": "meaning, reason / कारण / lý do / причина" },
+    { "word": "忘れ物", "reading": "わすれもの", "meaning": "lost article / खोई हुई चीज / đồ bị quên / потерянная вещь" },
+    { "word": "笑う", "reading": "わらう", "meaning": "to laugh, to smile / हंसना / cười / смеяться" },
+    { "word": "割合", "reading": "わりあい", "meaning": "rate, ratio, percentage / अनुपात / tỷ lệ / соотношение" },
+    { "word": "割れる", "reading": "われる", "meaning": "to break / टूटना / bị vỡ / ломаться" },
+    { "word": "アクセサリー", "reading": "アクセサリー", "meaning": "accessory / सहायक उपकरण / phụ kiện / аксессуар" },
+    { "word": "アジア", "reading": "アジア", "meaning": "Asia / एशिया / châu Á / Азия" },
+    { "word": "アナウンサー", "reading": "アナウンサー", "meaning": "announcer / उद्घोषक / phát thanh viên / ведущий" },
+    { "word": "アフリカ", "reading": "アフリカ", "meaning": "Africa / अफ्रीका / Châu Phi / Африка" },
+    { "word": "アメリカ", "reading": "アメリカ", "meaning": "America / अमेरिका / Mỹ / Америка" },
+    { "word": "アルコール", "reading": "アルコール", "meaning": "alcohol / शराब / rượu / алкоголь" },
+    { "word": "アルバイト", "reading": "アルバイト", "meaning": "part-time job / अंशकालिक नौकरी / việc làm thêm / работа неполный день" },
+    { "word": "エスカレーター", "reading": "エスカレーター", "meaning": "escalator / एस्केलेटर / thang cuốn / эскалатор" },
+    { "word": "オートバイ", "reading": "オートバイ", "meaning": "motorcycle / मोटरसाइकिल / xe máy / мотоцикл" },
+    { "word": "カーテン", "reading": "カーテン", "meaning": "curtain / परदा / rèm cửa / занавеска" },
+    { "word": "ガス", "reading": "ガス", "meaning": "gas / गैस / ga / газ" },
+    { "word": "ガソリン", "reading": "ガソリン", "meaning": "petrol / पेट्रोल / xăng / бензин" },
+    { "word": "ガソリンスタンド", "reading": "ガソリンスタンド", "meaning": "petrol station / पेट्रोल पंप / trạm xăng / бензоколонка" },
+    { "word": "ガラス", "reading": "ガラス", "meaning": "glass / काँच / kính / стекло" },
+    { "word": "ケーキ", "reading": "ケーキ", "meaning": "cake / केक / bánh kem / торт" },
+    { "word": "消しゴム", "reading": "けしゴム", "meaning": "eraser / रबर / tẩy / ластик" },
+    { "word": "コンサート", "reading": "コンサート", "meaning": "concert / संगीत कार्यक्रम / buổi hòa nhạc / концерт" },
+    { "word": "コンピューター", "reading": "コンピューター", "meaning": "computer / कंप्यूटर / máy tính / компьютер" },
+    { "word": "サラダ", "reading": "サラダ", "meaning": "salad / सलाद / rau trộn / салат" },
+    { "word": "サンダル", "reading": "サンダル", "meaning": "sandal / चप्पल / dép / сандалия" },
+    { "word": "サンドイッチ", "reading": "サンドイッチ", "meaning": "sandwich / सैंडविच / bánh mì kẹp / сэндвич" },
+    { "word": "ジャム", "reading": "ジャム", "meaning": "jam / जैम / mứt / джем" },
+    { "word": "スーツ", "reading": "スーツ", "meaning": "suit / सूट / bộ vest / костюм" },
+    { "word": "スーツケース", "reading": "スーツケース", "meaning": "suitcase / सूटकेस / vali / чемодан" },
+    { "word": "スクリーン", "reading": "スクリーン", "meaning": "screen / स्क्रीन / màn hình / экран" },
+    { "word": "ステーキ", "reading": "ステーキ", "meaning": "steak / स्टेक / bít tết / стейк" },
+    { "word": "ステレオ", "reading": "ステレオ", "meaning": "stereo / स्टीरियो / âm thanh nổi / стерео" },
+    { "word": "ソフト", "reading": "ソフト", "meaning": "soft / सॉफ्ट / mềm / мягкий" },
+    { "word": "タイプ", "reading": "タイプ", "meaning": "type, style / प्रकार / kiểu / тип" },
+    { "word": "チェックする", "reading": "チェックする", "meaning": "to check / जांचना / kiểm tra / проверять" },
+    { "word": "テキスト", "reading": "テキスト", "meaning": "text, textbook / पाठ / sách giáo khoa / текст" },
+    { "word": "テニス", "reading": "テニス", "meaning": "tennis / टेनिस / quần vợt / теннис" },
+    { "word": "パート", "reading": "パート", "meaning": "part-time / अंशकालिक / bán thời gian / неполный рабочий день" },
+    { "word": "パソコン", "reading": "パソコン", "meaning": "personal computer / कंप्यूटर / máy tính cá nhân / персональный компьютер" },
+    { "word": "ハンドバッグ", "reading": "ハンドバッグ", "meaning": "handbag / हैंडबैग / túi xách / сумочка" },
+    { "word": "ピアノ", "reading": "ピアノ", "meaning": "piano / पियानो / đàn piano / пианино" },
+    { "word": "ビル", "reading": "ビル", "meaning": "building or bill / इमारत / tòa nhà / здание" },
+    { "word": "ファックス", "reading": "ファックス", "meaning": "fax / फैक्स / fax / факс" },
+    { "word": "プレゼント", "reading": "プレゼント", "meaning": "present / उपहार / quà / подарок" },
+    { "word": "ベル", "reading": "ベル", "meaning": "bell / घंटी / chuông / колокол" },
+    { "word": "レジ", "reading": "レジ", "meaning": "register / रजिस्टर / quầy thanh toán / касса" },
+    { "word": "レポート / リポート", "reading": "レポート / リポート", "meaning": "report / रिपोर्ट / báo cáo / отчет" },
+    { "word": "ワープロ", "reading": "ワープロ", "meaning": "word processor / वर्ड प्रोसेसर / máy đánh chữ / текстовый процессор" },
+        ];
+
+        const typingQuestions = [
+            { question: "こんにちは", meaning: "Hello", answers: ["konnichiwa", "こんにちは"] },
+            { question: "ありがとう", meaning: "Thank you", answers: ["arigatou", "ありがとう"] },
+            { question: "おはよう", meaning: "Good morning", answers: ["ohayou", "おはよう"] },
+            { question: "さようなら", meaning: "Goodbye", answers: ["sayounara", "さようなら"] },
+            { question: "すみません", meaning: "Excuse me", answers: ["sumimasen", "すみません"] }
+        ];
+
+        const voiceQuestions = [
+            { question: "ありがとう", meaning: "Thank you" },
+            { question: "こんにちは", meaning: "Hello" },
+            { question: "おはよう", meaning: "Good morning" },
+            { question: "さようなら", meaning: "Goodbye" },
+            { question: "すみません", meaning: "Excuse me" }
+        ];
+
+        // State
+        let currentCardIndex = 0;
+        let currentTypingIndex = 0;
+        let currentVoiceIndex = 0;
+        let isCardFlipped = false;
+        let isRecording = false;
+        let typingCorrect = 0;
+        let typingTotal = 0;
+
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.dataset.tab;
+                
+                // Update active tab button
+                document.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('active', 'border-white', 'text-white');
+                    b.classList.add('border-transparent', 'text-white/80');
+                });
+                btn.classList.add('active', 'border-white', 'text-white');
+                btn.classList.remove('border-transparent', 'text-white/80');
+                
+                // Show active tab content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Flashcard functionality
+        function updateCard() {
+            const card = deckN4[currentCardIndex];
+            document.getElementById('card-word-text').textContent = card.word;
+            document.getElementById('card-word-reading').textContent = card.reading;
+            document.getElementById('card-meaning-text').textContent = card.meaning;
+            document.getElementById('card-example').textContent = card.example;
+            document.getElementById('card-counter').textContent = currentCardIndex + 1;
+            document.getElementById('total-cards').textContent = deckN4.length;
+            
+            // Reset flip state
+            document.getElementById('flashcard').classList.remove('flipped');
+            isCardFlipped = false;
+        }
+
+        function nextCard() {
+            currentCardIndex = (currentCardIndex + 1) % deckN4.length;
+            updateCard();
+        }
+
+        function previousCard() {
+            currentCardIndex = (currentCardIndex - 1 + deckN4.length) % deckN4.length;
+            updateCard();
+        }
+
+        function playPronunciation() {
+            // Simulate pronunciation playback
+            alert('発音を再生中... (実際の実装では音声APIを使用)');
+        }
+
+        function toggleFavorite() {
+            alert('お気に入りに追加しました！');
+        }
+
+        // Card flip functionality
+        document.getElementById('flashcard').addEventListener('click', () => {
+            const card = document.getElementById('flashcard');
+            card.classList.toggle('flipped');
+            isCardFlipped = !isCardFlipped;
+        });
+
+        // Typing functionality
+        function updateTypingQuestion() {
+            const question = typingQuestions[currentTypingIndex];
+            document.getElementById('typing-question').textContent = question.question;
+            document.getElementById('typing-meaning').textContent = question.meaning;
+            document.getElementById('typing-counter').textContent = currentTypingIndex + 1;
+            document.getElementById('typing-total').textContent = typingQuestions.length;
+            document.getElementById('typing-input').value = '';
+            document.getElementById('typing-input').focus();
+        }
+
+        function checkTypingAnswer() {
+            const input = document.getElementById('typing-input');
+            const question = typingQuestions[currentTypingIndex];
+            const userAnswer = input.value.trim().toLowerCase();
+            
+            const isCorrect = question.answers.some(answer => 
+                answer.toLowerCase() === userAnswer
+            );
+            
+            if (isCorrect) {
+                // Success animation
+                input.parentElement.parentElement.classList.add('success-glow');
+                typingCorrect++;
+                
+                setTimeout(() => {
+                    input.parentElement.parentElement.classList.remove('success-glow');
+                    nextTypingQuestion();
+                }, 1000);
+            } else if (userAnswer.length > 0) {
+                // Error animation
+                input.parentElement.parentElement.classList.add('error-shake');
+                
+                setTimeout(() => {
+                    input.parentElement.parentElement.classList.remove('error-shake');
+                }, 500);
+            }
+            
+            typingTotal++;
+            updateTypingAccuracy();
+        }
+
+        function nextTypingQuestion() {
+            currentTypingIndex = (currentTypingIndex + 1) % typingQuestions.length;
+            updateTypingQuestion();
+        }
+
+        function skipTypingQuestion() {
+            nextTypingQuestion();
+        }
+
+        function resetTyping() {
+            currentTypingIndex = 0;
+            typingCorrect = 0;
+            typingTotal = 0;
+            updateTypingQuestion();
+            updateTypingAccuracy();
+        }
+
+        function updateTypingAccuracy() {
+            const accuracy = typingTotal > 0 ? Math.round((typingCorrect / typingTotal) * 100) : 100;
+            document.getElementById('typing-accuracy').textContent = accuracy;
+        }
+
+        // Typing input event listener
+        document.getElementById('typing-input').addEventListener('input', checkTypingAnswer);
+        document.getElementById('typing-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                checkTypingAnswer();
+            }
+        });
+
+        // Voice functionality
+        function updateVoiceQuestion() {
+            const question = voiceQuestions[currentVoiceIndex];
+            document.getElementById('voice-question').textContent = question.question;
+            document.getElementById('voice-meaning').textContent = question.meaning;
+            document.getElementById('voice-feedback').textContent = 'マイクボタンを押して発音してください';
+            document.getElementById('voice-score').textContent = '--';
+        }
+
+        function toggleVoiceRecording() {
+            const btn = document.getElementById('voice-btn');
+            const waves = document.getElementById('voice-waves');
+            const feedback = document.getElementById('voice-feedback');
+            
+            if (!isRecording) {
+                // Start recording
+                isRecording = true;
+                btn.classList.remove('bg-red-500', 'hover:bg-red-600');
+                btn.classList.add('bg-green-500', 'hover:bg-green-600');
+                btn.textContent = '⏹️';
+                waves.style.display = 'flex';
+                feedback.textContent = '録音中... 発音してください';
+                
+                // Simulate recording for 3 seconds
+                setTimeout(() => {
+                    stopVoiceRecording();
+                }, 3000);
+            } else {
+                stopVoiceRecording();
+            }
+        }
+
+        function stopVoiceRecording() {
+            const btn = document.getElementById('voice-btn');
+            const waves = document.getElementById('voice-waves');
+            const feedback = document.getElementById('voice-feedback');
+            const score = document.getElementById('voice-score');
+            
+            isRecording = false;
+            btn.classList.remove('bg-green-500', 'hover:bg-green-600');
+            btn.classList.add('bg-red-500', 'hover:bg-red-600');
+            btn.textContent = '🎤';
+            waves.style.display = 'none';
+            
+            // Simulate voice recognition result
+            const randomScore = Math.floor(Math.random() * 30) + 70; // 70-100
+            score.textContent = randomScore + '%';
+            
+            if (randomScore >= 80) {
+                feedback.textContent = '素晴らしい発音です！';
+                setTimeout(() => {
+                    nextVoiceQuestion();
+                }, 2000);
+            } else {
+                feedback.textContent = 'もう一度試してみましょう。口の形を意識してください。';
+            }
+        }
+
+        function nextVoiceQuestion() {
+            currentVoiceIndex = (currentVoiceIndex + 1) % voiceQuestions.length;
+            updateVoiceQuestion();
+        }
+
+        // Admin functionality
+        function exportCSV() {
+            const csvContent = "data:text/csv;charset=utf-8," + 
+                "カード,読み方,意味,正解率\n" +
+                deckN4.map(card => 
+                    `${card.word},${card.reading},${card.meaning},${Math.floor(Math.random() * 30) + 70}%`
+                ).join("\n");
+            
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "学習データ.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function exportExcel() {
+            alert('Excel形式でのエクスポート機能を実行中...\n(実際の実装では適切なライブラリを使用)');
+        }
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            if (!touchStartX || !touchStartY) return;
+            
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
+            
+            // Only handle horizontal swipes on cards tab
+            if (document.getElementById('cards').classList.contains('active')) {
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                    if (diffX > 0) {
+                        nextCard(); // Swipe left = next card
+                    } else {
+                        previousCard(); // Swipe right = previous card
+                    }
+                }
+            }
+            
+            touchStartX = 0;
+            touchStartY = 0;
+        });
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('cards').classList.contains('active')) {
+                if (e.key === 'ArrowLeft') {
+                    previousCard();
+                } else if (e.key === 'ArrowRight') {
+                    nextCard();
+                } else if (e.key === ' ') {
+                    e.preventDefault();
+                    document.getElementById('flashcard').click();
+                }
+            }
+        });
+
+        // Initialize
+        updateCard();
+        updateTypingQuestion();
+        updateVoiceQuestion();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98b30b5985edeb98',t:'MTc1OTg5OTMwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
